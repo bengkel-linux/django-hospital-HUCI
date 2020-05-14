@@ -23,11 +23,30 @@ Install django in the virtual environment with the following command:
 ```
 $ pip install -r requirements.txt
 ```
+### Setup your own MySQL Server 
+```
+$ sudo apt install mysql-server python3-dev libmysqlclient-dev default-libmysqlclient-dev
+```
+
+### Install MySQL DB Connector
+```
+$ pip install mysqlclient
+```
+
+### Enter MySQL command prompt and Run MySQL Script (Hospital.sql)
+```
+$ sudo mysql -u root
+mysql > source /path/to/script.sql
+```
+### Create user for admin interface in MySQL
+```
+mysql > CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password';
+```
 ## Migrate
 Do migration only once before starting the server, or after any change to the database model with
 
 ```
-python hospitalmgmt/manage.py migrate [port]
+python manage.py migrate [port]
 ```
 
 
@@ -35,5 +54,11 @@ python hospitalmgmt/manage.py migrate [port]
 Run the server with the following code inside the virtual environment:
 
 ```
-python hospitalmgmt/manage.py runserver [port]
+python manage.py runserver [port]
+```
+
+## Admin Interface
+Create a user in MySQL with the same name (`newuser`) with `createsuperuser` command in django.
+```
+python manage.py createsuperuser
 ```
