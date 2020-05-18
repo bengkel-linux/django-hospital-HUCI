@@ -27,12 +27,10 @@ $ pip install -r requirements.txt
 ```
 $ sudo apt install mysql-server python3-dev libmysqlclient-dev default-libmysqlclient-dev
 ```
-
 ### Install MySQL DB Connector
 ```
 $ pip install mysqlclient
 ```
-
 ### Enter MySQL command prompt and Run MySQL Script (Hospital.sql)
 ```
 $ sudo mysql -u root
@@ -42,14 +40,16 @@ mysql > source /path/to/script.sql
 ```
 mysql > CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password';
 ```
+### Grant Privileges for `newuser` in MySQL
+```
+mysql > GRANT ALL PRIVILEGES ON <dbname>.* TO `newuser`@`localhost`;
+```
 ## Migrate
 Do migration only once before starting the server, or after any change to the database model with
 
 ```
 python manage.py migrate [port]
 ```
-
-
 ## Running the server
 Run the server with the following code inside the virtual environment:
 
@@ -58,7 +58,12 @@ python manage.py runserver [port]
 ```
 
 ## Admin Interface
-Create a user in MySQL with the same name (`newuser`) with `createsuperuser` command in django.
+Create a user in MySQL with the same name (`newuser`) by using `createsuperuser` command in django.
 ```
 python manage.py createsuperuser
 ```
+
+# Results
+![appointment screen](assets/images/appointment-scr.png "appointment page")
+![create appointment](assets/images/create-apt-scr.png "create appointment page")
+![cancel appointment](assets/images/cancel-apt-scr.png "cancel appointment page")
